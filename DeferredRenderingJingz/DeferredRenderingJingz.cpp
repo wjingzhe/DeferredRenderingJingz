@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include "DeferredRenderingJingz.h"
+#include "DeferredRenderer.h"
+#include "InputManager.h"
+#include "WindowHandle.h"
+
 
 #define MAX_LOADSTRING 100
 
@@ -10,6 +14,9 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
+
+DeferredRenderer* m_pDeferredRenderer;
+
 
 // Forward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -26,7 +33,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
  	// TODO: Place code here.
-	MSG msg;
+	MSG msg = {};
 	HACCEL hAccelTable;
 
 	// Initialize global strings
@@ -42,14 +49,32 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DEFERREDRENDERINGJINGZ));
 
+
+	m_pDeferredRenderer = new DeferredRenderer();
+
+
 	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0))
+	while (WM_QUIT != msg.message)
 	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+		else
+		{
+			//Insert update and rendering functions
+
+			m_pDeferredRenderer->Update();
+			m_pDeferredRenderer->Render();
+
+			if (InputManager::Instance()->IsKeyDown(DIK_ESCAPE))
+			{
+				msg.message = WM_QUIT;
+			}
+
+		}
+
 	}
 
 	return (int) msg.wParam;
@@ -76,7 +101,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_DEFERREDRENDERINGJINGZ));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_DEFERREDRENDERINGJINGZ);
+	wcex.lpszMenuName	= NULL;
 	wcex.lpszClassName	= szWindowClass;
 	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -99,16 +124,17 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    hInst = hInstance; // Store instance handle in our global variable
 
-   hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+   RECT rc = { 0, 0, 1280, 800 };
+   WindowHandle::s_hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+	   CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance, NULL);
 
-   if (!hWnd)
+   if (!WindowHandle::s_hWnd)
    {
       return FALSE;
    }
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+   ShowWindow(WindowHandle::s_hWnd, nCmdShow);
+   UpdateWindow(WindowHandle::s_hWnd);
 
    return TRUE;
 }

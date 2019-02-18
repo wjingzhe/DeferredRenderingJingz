@@ -13,6 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{0cd27c97-67be-4fc9-be89-7c5346c29775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Voxels">
+      <UniqueIdentifier>{673cc820-1bfb-4ef0-a1f2-bdf86fb28b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CommonStructs">
+      <UniqueIdentifier>{9117e7e9-25ed-4939-b382-b686d502d33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules">
+      <UniqueIdentifier>{2741a945-8aa2-4657-9c2e-6b324d92ce12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{dfa9e41b-c78a-439f-bc01-1865f6bce6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Effects">
+      <UniqueIdentifier>{86219d13-370d-4371-bc94-5a922cf9c1b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Shaders">
+      <UniqueIdentifier>{e919b932-903a-4721-bc64-714c1ede0f50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,6 +51,54 @@
     <ClInclude Include="DeferredRenderingJingz.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Voxel.h">
+      <Filter>Source Files\Entities\Voxels</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Source Files\Entities\Voxels</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexStructs.h">
+      <Filter>Source Files\CommonStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenSolution.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="LightningRenderer.h">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBufferStructs.h">
+      <Filter>Source Files\CommonStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonShaderResourceManager.h">
+      <Filter>Source Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHandle.h">
+      <Filter>Source Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadRenderer.h">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="GBufferRenderer.h">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="CombineFinalRenderer.h">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredRenderer.h">
+      <Filter>Source Files\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +106,48 @@
     </ClCompile>
     <ClCompile Include="DeferredRenderingJingz.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Voxel.cpp">
+      <Filter>Source Files\Entities\Voxels</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files\Entities\Voxels</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenSolution.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="LightningRenderer.cpp">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonShaderResourceManager.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadRenderer.cpp">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="GBufferRenderer.cpp">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="CombineFinalRenderer.cpp">
+      <Filter>Source Files\Renderer\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredRenderer.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHandle.cpp">
+      <Filter>Source Files\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,5 +162,25 @@
     <Image Include="DeferredRenderingJingz.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="CombineFinalPixelShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="DirectionalLightPixelShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="DrawTexturePixelShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="QuadVertexShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="RenderGBufferVertexShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="RenderGBufferPixelShader.hlsl">
+      <Filter>Source Files\Renderer\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
